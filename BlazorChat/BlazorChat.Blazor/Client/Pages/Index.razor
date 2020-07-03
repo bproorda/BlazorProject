@@ -1,13 +1,20 @@
 ﻿@page "/"
 @using BlazorChat.Blazor.Client.Components
 
-#
-@if (username != null)
+
+@if (!loggedIn)
 {
-<h3>Login in to see chat</h3>
-} else
+    <h3>Login in to see chat</h3>
+    <label>
+        User:
+        <input @bind="username" />
+    </label>
+    <button @onclick=LogIn >Log In</button>
+
+}
+else
 {
-    <Chat/>
+    <Chat />
 }
 
 
@@ -15,4 +22,11 @@
 @code {
 
     public string username { get; set; } = "";
+
+    public bool loggedIn { get; set; } = false;
+
+    private void LogIn()
+    {
+        loggedIn = !loggedIn;
+    }
 }
