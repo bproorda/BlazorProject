@@ -1,0 +1,44 @@
+﻿@page "/tasks"
+@using BlazorChat.Blazor.Shared
+@inject HttpClient Http
+
+
+<h3>Tasks</h3>
+
+
+@if (ourTasks == null)
+{
+    <p><em>Loading...</em></p>
+    <img src="/images/Loading.gif" asp-append-version="true"/>
+}
+else
+{
+<ul>
+    @foreach (var task in ourTasks)
+    {
+        <li>Title: @task.title</li>
+        <li>Difficulty: @task.difficulty</li>
+        <li>Assigned to: @task.assignedTo</li>
+        <li>Completed: <img src=@(task.completed ? "/images/check.png" : "/images/false.png") 
+                            asp-append-version="true" width="20" />
+    </li>
+        
+    }
+</ul>
+}
+
+
+
+
+
+@code {
+    //https://deltav-todo-alpha.azurewebsites.net/api/v1/Todos
+
+    private taskModel[] ourTasks;
+
+    protected override async Task OnInitializedAsync()
+    {
+        ourTasks = await Http.GetFromJsonAsync<taskModel[]>("https://deltav-todo-alpha.azurewebsites.net/api/v1/Todos");
+    }
+
+}
