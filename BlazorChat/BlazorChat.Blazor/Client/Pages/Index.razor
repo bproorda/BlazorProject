@@ -1,7 +1,18 @@
 ﻿@page "/"
+@using BlazorChat.Blazor.Client.Components
 
-<h3>Index</h3>
+#
+@if (username != null)
+{
+<h3>Login in to see chat</h3>
+} else
+{
+    <Chat/>
+}
+
+
 
 @code {
 
+    public string username { get; set; } = "";
 }
