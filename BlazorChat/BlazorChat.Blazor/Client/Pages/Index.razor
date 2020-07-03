@@ -1,32 +1,8 @@
 ﻿@page "/"
-@using BlazorChat.Blazor.Client.Components
+<h3>Welcome to my Blazor Playground!</h3>
 
-
-@if (!loggedIn)
-{
-    <h3>Login in to see chat</h3>
-    <label>
-        User:
-        <input @bind="username" />
-    </label>
-    <button @onclick=LogIn >Log In</button>
-
-}
-else
-{
-    <Chat userName=@username/>
-}
-
-
+<p>Checkout the tabs to the left</p>
 
 @code {
 
-    public string username { get; set; } = "";
-
-    public bool loggedIn { get; set; } = false;
-
-    private void LogIn()
-    {
-        loggedIn = !loggedIn;
-    }
 }
